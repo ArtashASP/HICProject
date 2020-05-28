@@ -1,0 +1,67 @@
+﻿@model HICProject.ViewModels.RegisterViewModel
+
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/css/styleReg.css" rel="stylesheet" />
+    <title>User Login and Registration</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body style="background-color:aqua">
+    <div class="container">
+        <div class="login-box">
+            <div class="row">
+                <div class="col-md-6 login-left" >
+
+                </div>
+                <div class="col-md-6 login-right">
+                    <h2>Register </h2>
+                    <form asp-action="register">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="City" class="control-label"></label>
+                            <input asp-for="City" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Role">Role (select one):</label>
+                            <select asp-for="Role" class="form-control">
+                                <option>----</option>
+                                <option value="0">Doctor</option>
+                                <option value="1">Patient</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Register Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

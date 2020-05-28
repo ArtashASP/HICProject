@@ -1,0 +1,78 @@
+﻿@model WebApplication1.Models.HIC.Patients_Medication
+@using WebApplication1.Models
+
+@{
+    ViewData["Title"] = "AddPatientsMedication";
+    IEnumerable<Medication> medications = ViewData["Medications"] as IEnumerable<Medication>;
+    IEnumerable<Patients> patients = ViewData["Patients"] as IEnumerable<Patients>;
+
+}
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>AddPatientsMedication</h1>
+
+        <h4>Patients_Medication</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddPatientsMedication">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="medication_id" class="control-label">Medication Id</label>
+                        <br />
+                        <select asp-for="medication_id" name="Medications"
+                                class="custom-select" style="color:blue">
+                            @foreach (var p in medications)
+                            {
+                                <option value="@p.Id">@p.Id - @p.medication_name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="medication_id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="patient_id" class="control-label">Patient Id</label>
+                        <br />
+                        <select asp-for="patient_id" name="Patients"
+                                class="custom-select" style="color:blue">
+                            @foreach (var p in patients)
+                            {
+                                <option value="@p.Id">@p.Id - @p.FirstName @p.LastName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="patient_id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="date_time_administrered" class="control-label">Date and time of administreated</label>
+                        <input asp-for="date_time_administrered" class="form-control" />
+                        <span asp-validation-for="date_time_administrered" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Dosage" class="control-label">Dosage</label>
+                        <input asp-for="Dosage" class="form-control" />
+                        <span asp-validation-for="Dosage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Comments" class="control-label">Comments</label>
+                        <input asp-for="Comments" class="form-control" />
+                        <span asp-validation-for="Comments" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+
+    </body>
+    </html>
+
+
+

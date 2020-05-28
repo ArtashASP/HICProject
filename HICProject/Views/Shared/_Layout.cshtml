@@ -1,0 +1,114 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - HICProject</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body style="background-image: url('/image/hicimage.png');">
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-chevron-left" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header>My App</header>
+        <ul class="nav flex-column flex-nowrap overflow-hidden">
+
+            <li class="nav-item">
+                <a class="nav-link text-truncate" asp-action="start" asp-controller="home">
+                    <i class="fa fa-home"></i>
+                    <span class="d-none d-sm-inline">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-truncate" asp-controller="home" asp-action="Privacy">
+                    <i class="fas fa-qrcode"></i>
+                    <span class="d-none d-sm-inline">Privacy</span>
+                </a>
+            </li>
+
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Patient"))
+            {
+                <li class="nav-item">
+
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="DoctorsList"> <i class="fas fa-stethoscope"></i>Doctor</a>
+                </li>
+            }
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Doctor"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="Schedule">My Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="AddPatientsMedication">Add Patient medication</a>
+                </li>
+            }
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Administration" asp-action="ListRoles">Manage roles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="AddMedication">Add Medication</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="Patient">Patients table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-truncate" asp-controller="Home" asp-action="Staff">Doctor table</a>
+                </li>
+
+            }
+
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li class="nav-item ">
+                    <form method="post" asp-action="Logout" asp-controller="account">
+                        <button type="submit" class="nav-link text-danger font-italic"
+                                style=" background-color:dimgray">
+                            Log out
+                        </button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-white font-italic" asp-controller="Account" asp-action="Register">Register</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white font-italic" asp-controller="Account" asp-action="Login">Login</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <section>
+        <div class="col">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </section>
+
+    <footer>
+
+        <div class="footer-copyright text-center py-3">
+            &copy; 2020 - HICProject:
+            <a href="http://hic.am/"> Health inovation center Armenia</a>
+            <br />
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

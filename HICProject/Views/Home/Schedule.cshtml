@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Appointment>
+
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <table class="table table-striped table-dark" border="1" align="center">
+            <thead>
+                <tr>
+                    <th>Manage</th>
+                    <th>Patient Id</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Start</th>
+                    <th>End</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                <tr>
+                    <td>
+                        <form  asp-action="ManageAppointment" asp-controller="Home" 
+                              asp-route-patientId="@o.patientId" asp-route-appointmentId="@o.Id">
+                            <button class="btn btn-info" type="submit" >Manage</button>
+                        </form>
+                    </td>
+                    <td>@o.patientId</td>
+                    <th>@o.Description</th>
+                    <td>@o.Status</td>
+                    <td>@o.Priority</td>
+                    <td>@o.Start.ToString()</td>
+                    <td>@o.End.ToString()</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+    </html>

@@ -1,0 +1,43 @@
+﻿
+.login-box {
+    max-width: 800px;
+    /* float: none; */
+    margin: 50px auto;
+    background: cadetblue;
+}
+
+.login-left {
+    border-bottom-right-radius: 2px;
+    padding: 30px;
+    height: 630px;
+    background: cadetblue;
+    background-image: url('../image/doc.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.login-right {
+    background: #fff;
+    padding: 10px;
+    height: 630px;
+    background: #0F3552;
+    text-transform: uppercase;
+    color: #fff !important;
+}
+
+.form-control {
+    background-color: transparent !important;
+    color: black !important;
+}
+
+a {
+    color: #fff !important;
+    margin-top: -200px !important;
+}
+
+.h2 {
+    color: #fff !important;
+    margin-top: 200px !important;
+    text-align: center !important;
+    text-transform: uppercase;
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication1.Models.HIC.Patients>
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    </head>
+    <body>
+        <table class="table table-striped table-dark" border="1" align="center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Birth Day</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                    <tr>
+
+                        <td scope="row">@o.Id</td>
+                        <td>@o.FirstName</td>
+                        <td>@o.LastName</td>
+                        <td>@o.Gender</td>
+                        <td>@o.Email</td>
+                        <td>@o.MobilePhone</td>
+                        <td>@o.Date.ToString("MM/dd/yyyy")</td>
+                        <td>@o.Address</td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+    </html>
